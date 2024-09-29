@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #my apps
     'categgory',
     'accounts',
 ]
@@ -126,3 +127,6 @@ STATICFILES_DIRS = [
     'blackrock\static',
 ]
 
+#media file configuration
+MEDIA_URL ='/media/'
+MEDIA_ROOT =BASE_DIR /'media'
