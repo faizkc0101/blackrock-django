@@ -5,14 +5,13 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 
 SECRET_KEY = config('SECRET_KEY')
-
+#decouple for hide  git
 DEBUG = config('DEBUG',cast=bool)
 
 ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,6 +49,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #costum template
                 'category.context_processors.menu_links',
                 'carts.context_processors.counter',
             ],
@@ -122,3 +122,25 @@ STATICFILES_DIRS = [
 #media file configuration
 MEDIA_URL ='/media/'
 MEDIA_ROOT =BASE_DIR /'media'
+
+from django.contrib.messages import constants as messages
+MESSAGES_TAGS = {
+    messages.ERROR :'danger',
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+}
+
+#SMTP CONFIGRATION
+DEFAULT_AUTO_FIELD ='django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'kcblack0101@gmail.com'
+EMAIL_HOST_PASSWORD ='ilmr ljas ybww bqrf'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL= False
+
+

@@ -2,18 +2,43 @@
 {% load static %}
 
 {% block content %}
+<style>
+	@keyframes up-down {
+		0% {
+			transform: translateY(0);
+		}
+		100% {
+			transform: translateY(20px);
+		}
+	}
+
+	.animated-img {
+		animation: up-down 2s ease-in-out infinite alternate-reverse both;
+	}
+</style>
 
 <!-- ========================= SECTION MAIN ========================= -->
- <section class="section-intro padding-y-sm">
-<div class="container">
-
-<div class="intro-banner-wrap">
-	<img src="{% static 'images/banners/2.jpg'%}" class="img-fluid rounded">
-</div>
-
-</div> <!-- container //  -->
+<section class="section-intro padding-0">
+    <div class="container-fluid p-0">  <!-- Changed to container-fluid -->
+        <div class="intro-banner-wrap p-0">
+			<div class='p-2'>
+			<img src="{% static 'images/banners/2.jpg' %}" 
+			class="img-fluid rounded animated-img" 
+			alt="Intro Banner" 
+			style="width: 100%; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+			</div>
+			<div class='p-2'>
+			<img src="{% static 'images/banners/2.jpg' %}" 
+			class="img-fluid rounded animated-img" 
+			alt="Intro Banner" 
+			style="width: 100%; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+	        </div>
+        </div>
+    </div> <!-- container //  -->
 </section>
 <!-- ========================= SECTION MAIN END// ========================= -->
+
+
 
 <!-- ========================= SECTION  ========================= -->
 <section class="section-name padding-y-sm">
@@ -44,5 +69,21 @@
 <!-- ========================= SECTION  END// ========================= -->
 </body>
 </html>
+
+
+<div class="container">
+	<div class="row image-container">
+		<div class="col">
+			<img src="{% static 'images/banners/2.jpg' %}" 
+				 class="img-fluid rounded animated-img" 
+				 alt="Intro Banner">
+		</div>
+		<div class="col">
+			<img src="{% static 'images/banners/2.jpg' %}" 
+				 class="img-fluid rounded animated-img" 
+				 alt="Intro Banner">
+		</div>
+	</div>
+</div>
 
 {% endblock content %}
