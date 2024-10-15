@@ -1,0 +1,58 @@
+{% extends "c_admin/base.html" %}
+{% block content %}
+
+<!-- Form Start -->
+<div class="container-fluid pt-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Add Product</h6>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="product_name" class="form-label">Product name</label>
+                        <input type="text" class="form-control" id="product_name" name="product_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="slug" class="form-label">Slug</label>
+                        <input type="text" class="form-control" id="slug" name="slug">
+                    </div>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="description" style="height: 150px;" name="description"></textarea>
+                        <label for="description">Description</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="text" class="form-control" id="price" name="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Images</label>
+                        <input class="form-control bg-dark" type="file" id="formFile" name="images">
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="text" class="form-control" id="stock" name="stock">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="is_available" name="is_available">
+                        <label class="form-check-label" for="is_available">
+                            Is available
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select class="form-select form-select-sm mb-3" id="category" name="category">
+                            {% for cat in categories %}
+                                <option value="{{ cat.id }}">{{ cat.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Form End -->
+
+{% endblock content %}

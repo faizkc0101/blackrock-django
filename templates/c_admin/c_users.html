@@ -1,0 +1,49 @@
+{% extends "c_admin/base.html" %}
+{% block content %}
+<div class="col-12 p-2">
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Users</h6>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Phone number</th>
+                        <th scope="col">Date joined</th>
+                        <th scope="col">Last login</th>
+                        <th scope="col">is active</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.phone_number }}</td>
+                        <td>{{ user.date_joined }}</td>
+                        <td>{{ user.last_login }}</td>
+                        <td>{{ user.is_active }}</td>
+                        <td>
+                            <form method="post" action="{% url 'user_status' user.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm {% if user.is_active %}btn-danger{% else %}btn-success{% endif %}">
+                                    {% if user.is_active %}Deactivate{% else %}Activate{% endif %}
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

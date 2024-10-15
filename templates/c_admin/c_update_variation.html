@@ -1,0 +1,42 @@
+{% extends "c_admin/base.html" %}
+{% block content %}
+
+<!-- Form Start -->
+<div class="container-fluid pt-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Update Variation</h6>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="product" class="form-label">Select Product</label>
+                        <select class="form-select" id="product" name="product" required>
+                            {% for product in products %}
+                                <option value="{{ product.id }}" {% if product.id == variation.product.id %}selected{% endif %}>{{ product.product_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="variation_category" class="form-label">Variation Category</label>
+                        <input type="text" class="form-control" id="variation_category" name="variation_category" value="{{ variation.variation_category }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="variation_value" class="form-label">Variation Value</label>
+                        <input type="text" class="form-control" id="variation_value" name="variation_value" value="{{ variation.variation_value }}" required>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="is_active" name="is_active" {% if variation.is_active %}checked{% endif %}>
+                        <label class="form-check-label" for="is_active">
+                            Is Active
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Variation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Form End -->
+
+{% endblock content %}

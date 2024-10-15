@@ -12,8 +12,13 @@
             <aside class="col-md-6">
     <article class="gallery-wrap"> 
         <div class="img-big-wrap">
-           <a href="#"><img src="{{single_product.images.url}}"></a>
-        </div> <!-- img-big-wrap.// -->
+            {% if single_product.images %}
+                <a href="#"><img src="{{ single_product.images.url }}" alt="{{ single_product.product_name }}"></a>
+            {% else %}
+                <a href="#"><img src="{% static 'path/to/default/image.jpg' %}" alt="Default Image"></a> <!-- Use a default image -->
+            {% endif %}
+        </div>
+        <!-- img-big-wrap.// -->
         
     </article> <!-- gallery-wrap .end// -->
             </aside>
@@ -31,12 +36,12 @@
          <p>{{single_product.description}}</p>
         
         
-        {% comment %} <hr>
+       <hr>
             <div class="row">
                 <div class="item-option-select">
                     <h6>Choose Color</h6>
-                    <select  name='color' value="color" class="form-control">
-                      <option value="disabled selected">selcet color</option>
+                    <select  name='color' value="color" class="form-control" required>
+                      <option value="disabled selected">selcet</option>
                      {% for i in single_product.variation_set.colors %}
                       <option value="{{i.variation_value | lower}}">{{i.variation_value | capfirst}}</option>
                       {% endfor %}
@@ -48,7 +53,7 @@
                 <div class="item-option-select">
                     <h6>Select Size</h6>
                     <select  name='size' value="size" class="form-control">
-                        <option value="disabled selected">selcet size</option>
+                        <option value="disabled selected">selcet</option>
                      {% for i in single_product.variation_set.sizes %}
                         <option value="{{i.variation_value | lower}}">{{i.variation_value | capfirst}}</option>
                         {% endfor %}
@@ -56,18 +61,11 @@
                     
                 </div>
             </div> <!-- row.// -->
-            <hr> {% endcomment %}
+            <hr>
           {% if single_product.stock <= 0  %}
             <h5> Out of stock</h5>
-            {% else %}
-            {% if in_cart %}
-              <a href="#" class="btn  btn-success"> <span class="text">Added to cart</span> <i class="fas fa-check"></i>  </a>
-              <a href="{% url 'cart' %}" class="btn  btn-outline-primary"> <span class="text">View Cart</span> <i class="fas fa-eye"></i>  </a>
-
-
-            {% else %}
+          {% else %}
              <button type="submit"  class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
-            {% endif %}
           {% endif %}
         </article> <!-- product-info-aside .// -->
   </form>

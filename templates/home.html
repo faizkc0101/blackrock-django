@@ -13,73 +13,87 @@
 	}
 
 	.animated-img {
+		animation: up-down 1s ease-in-out infinite alternate-reverse both;
+	}
+	.animated-img1 {
 		animation: up-down 2s ease-in-out infinite alternate-reverse both;
 	}
+
+	.image-container {
+		margin-top: 20px;
+	}
+
+	
 </style>
 
 <!-- ========================= SECTION MAIN ========================= -->
 <section class="section-intro padding-0">
-    <div class="container-fluid p-0">  <!-- Changed to container-fluid -->
+    <div class="container-fluid p-0">
         <div class="intro-banner-wrap p-0">
 			<div class='p-2'>
-			<img src="{% static 'images/banners/2.jpg' %}" 
-			class="img-fluid rounded animated-img" 
-			alt="Intro Banner" 
-			style="width: 100%; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+				<img src="{% static 'images/banners/banner1.png' %}" 
+				class="img-fluid rounded animated-img" 
+				alt="Intro Banner" 
+				style="width: 100%; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
 			</div>
-			<div class='p-2'>
-			<img src="{% static 'images/banners/2.jpg' %}" 
-			class="img-fluid rounded animated-img" 
-			alt="Intro Banner" 
-			style="width: 100%; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
-	        </div>
         </div>
-    </div> <!-- container //  -->
+    </div>
+</section>
+<section class="section-intro padding-0">
+    <div class="container-fluid p-0">
+        <div class="intro-banner-wrap p-0">
+			<div class='p-2'>
+				<img src="{% static 'images/banners/banner3.png' %}" 
+				class="img-fluid rounded animated-img1" 
+				alt="Intro Banner" 
+				style="width: 100%; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+			</div>
+        </div>
+    </div>
 </section>
 <!-- ========================= SECTION MAIN END// ========================= -->
 
-
-
-<!-- ========================= SECTION  ========================= -->
+<!-- ========================= SECTION ========================= -->
 <section class="section-name padding-y-sm">
-<div class="container">
+	<div class="container">
+		<header class="section-heading">
+			<a href="{% url 'store' %}" class="btn btn-outline-primary float-right">See all</a>
+			<h3 class="section-title">Popular products</h3>
+		</header><!-- sect-heading -->
 
-<header class="section-heading">
-	<a href="{% url 'store'%}" class="btn btn-outline-primary float-right">See all</a>
-	<h3 class="section-title">Popular products</h3>
-</header><!-- sect-heading -->
-
-	
-<div class="row">
-	{% for product in products %}
-	<div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="{{product.get_url}}" class="img-wrap"> <img src="{{product.images.url}}"> </a>
-			<figcaption class="info-wrap">
-				<a href="{{product.get_url}}" class="title">{{product.product_name}}</a>
-				<div class="price mt-1">{{product.price}}</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-    {% endfor %}
-</div> <!-- row.// -->
-
-</div><!-- container // -->
+		<div class="row">
+			{% for product in products %}
+			<div class="col-md-3">
+				<div class="card card-product-grid">
+					<a href="{{ product.get_url }}" class="img-wrap">
+						{% if product.images %}
+							<img src="{{ product.images.url }}" alt="{{ product.product_name }}">
+						{% else %}
+							<img src="{% static 'images/default.jpg' %}" alt="Default Image">
+						{% endif %}
+					</a>
+					<figcaption class="info-wrap">
+						<a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
+						<div class="price mt-1">{{ product.price }}</div>
+					</figcaption>
+				</div>
+			</div> <!-- col.// -->
+			{% endfor %}
+		</div> <!-- row.// -->
+	</div><!-- container // -->
 </section>
-<!-- ========================= SECTION  END// ========================= -->
-</body>
-</html>
+<!-- ========================= SECTION END// ========================= -->
 
-
-<div class="container">
-	<div class="row image-container">
+<!-- Optional Section for Additional Images -->
+<div class="container image-container">
+	<div class="row">
 		<div class="col">
-			<img src="{% static 'images/banners/2.jpg' %}" 
+			<img src="{% static 'images/banners/banner2.png' %}" 
 				 class="img-fluid rounded animated-img" 
 				 alt="Intro Banner">
 		</div>
 		<div class="col">
-			<img src="{% static 'images/banners/2.jpg' %}" 
+			<img src="{% static 'images/banners/banner4.png' %}" 
 				 class="img-fluid rounded animated-img" 
 				 alt="Intro Banner">
 		</div>
@@ -87,3 +101,5 @@
 </div>
 
 {% endblock content %}
+
+

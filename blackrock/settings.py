@@ -22,8 +22,9 @@ INSTALLED_APPS = [
     #my apps
     'category',
     'accounts',
-    'store',
     'carts',
+    'store',
+    'c_admin',
 ]
 
 MIDDLEWARE = [
@@ -41,7 +42,7 @@ ROOT_URLCONF = 'blackrock.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,13 +125,15 @@ MEDIA_URL ='/media/'
 MEDIA_ROOT =BASE_DIR /'media'
 
 from django.contrib.messages import constants as messages
+
 MESSAGES_TAGS = {
-    messages.ERROR :'danger',
-    messages.DEBUG: 'debug',
-    messages.INFO: 'info',
-    messages.SUCCESS: 'success',
-    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',  # Bootstrap danger color for errors
+    messages.DEBUG: 'secondary',  # Optional: You can use this for debug messages
+    messages.INFO: 'info',  # Bootstrap info color
+    messages.SUCCESS: 'success',  # Bootstrap success color
+    messages.WARNING: 'warning',  # Bootstrap warning color
 }
+
 
 #SMTP CONFIGRATION
 DEFAULT_AUTO_FIELD ='django.db.models.BigAutoField'
