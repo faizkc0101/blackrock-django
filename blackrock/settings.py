@@ -126,12 +126,11 @@ MEDIA_ROOT =BASE_DIR /'media'
 
 from django.contrib.messages import constants as messages
 
-MESSAGES_TAGS = {
-    messages.ERROR: 'danger',  # Bootstrap danger color for errors
-    messages.DEBUG: 'secondary',  # Optional: You can use this for debug messages
-    messages.INFO: 'info',  # Bootstrap info color
-    messages.SUCCESS: 'success',  # Bootstrap success color
-    messages.WARNING: 'warning',  # Bootstrap warning color
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',  # Maps the error message level to Bootstrap's 'danger'
+    messages.WARNING: 'warning',
+    messages.SUCCESS: 'success',
+    messages.INFO: 'info',
 }
 
 
